@@ -38,7 +38,7 @@ const Post = ({ post }) => {
     const likeOrDislikeHandler = async () => {
         try {
             const action = liked ? 'dislike' : 'like'; // Determine the action
-            const res = await axios.get(`http://localhost:5000/api/v2/post/${post._id}/${action}`, { withCredentials: true });
+            const res = await axios.get(`http://localhost:5000/api/v2/post/${post?._id}/${action}`, { withCredentials: true });
             if (res.data.success) {
                 // Update the like count and liked state
                 setPostLike(prev => liked ? prev - 1 : prev + 1);
@@ -46,11 +46,11 @@ const Post = ({ post }) => {
 
                 // Update the posts array
                 const updatedPostData = posts.map(p =>
-                    p._id === post._id
+                    p?._id === post?._id
                         ? {
                             ...p,
                             likes: liked
-                                ? p.likes.filter(id => id !== user._id) // Remove like
+                                ? p.likes.filter(id => id !== user?._id) // Remove like
                                 : [...p.likes, user._id], // Add like
                         }
                         : p
@@ -79,7 +79,7 @@ const Post = ({ post }) => {
                 setComment(updatedCommentData);
 
                 const updatedPostData = posts.map(p => {
-                    if (p._id === post._id) {
+                    if (p?._id === post?._id) {
                         return { ...p, comments: updatedCommentData };
                     }
                     return p;
@@ -153,19 +153,19 @@ const Post = ({ post }) => {
                        
                         <Button
                             variant='ghost'
-                            className={`cursor-pointer ${user && user?._id == post?.author._id ? 'border-b' : 'border-none'} rounded-none py-7 w-full hover:bg-[#1A1A1A] hover:text-white border-zinc-600`}
+                            className={`cursor-pointer ${user && user?._id == post?.author?._id ? 'border-b' : 'border-none'} rounded-none py-7 w-full hover:bg-[#1A1A1A] hover:text-white border-zinc-600`}
                         >Add to favorites</Button>
                         {
-                            user && user?._id == post?.author._id && <Button onClick={deletePostHandler} variant='ghost' className='cursor-pointer rounded-none py-7 w-full hover:bg-[#1A1A1A] hover:text-white '>Delete</Button>
+                            user && user?._id == post?.author?._id && <Button onClick={deletePostHandler} variant='ghost' className='cursor-pointer rounded-none py-7 w-full hover:bg-[#1A1A1A] hover:text-white '>Delete</Button>
                         }
 
                     </DialogContent>
                 </Dialog>
             </div>
-            <div className='overflow-hidden bg-black'>
+            <div className='overflow-hidden mt-3 bg-black'>
                 <img
                     className='rounded-sm my-2 w-full  aspect-square object-contain'
-                    src={post.image}
+                    src={post?.image}
                     alt="post_image"
                 />
             </div>
@@ -188,8 +188,8 @@ const Post = ({ post }) => {
             </div>
             <span className='font-medium block mb-2'>{postLike} likes</span>
             <p className=''>
-                <span className='font-medium mr-2'>{post.author?.username}</span>
-                {post.caption}
+                <span className='font-medium mr-2'>{post?.author?.username}</span>
+                {post?.caption}
             </p>
             {
                 comment.length > 0 && <span onClick={() => {
