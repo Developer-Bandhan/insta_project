@@ -59,7 +59,7 @@ export const login = async (req, res) => {
     let user = await User.findOne({email});
     if(!user){
         return res.status(401).json({
-            message: "Incorrect email or password",
+            message: "Don't have any account, please Sign up",
             success: false
         })
     }
