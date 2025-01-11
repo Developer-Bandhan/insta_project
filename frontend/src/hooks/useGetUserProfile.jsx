@@ -10,7 +10,7 @@ const useGetUserProfile = (userId) => {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/v2/user/${userId}/profile`, {
+                const res = await axios.get(`https://instagram-project-ogve.onrender.com/api/v2/user/${userId}/profile`, {
                      withCredentials: true
                 })
                 if(res.data.success) {

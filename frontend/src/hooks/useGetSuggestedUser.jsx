@@ -9,7 +9,7 @@ const userGetSuggestedUsers = () => {
     useEffect(() => {
         const feachSuggestedUsers = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/v2/user/suggested`, {
+                const res = await axios.get(`https://instagram-project-ogve.onrender.com/api/v2/user/suggested`, {
                      withCredentials: true
                 })
                 if(res.data.success) {

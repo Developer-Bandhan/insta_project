@@ -33,7 +33,7 @@ const CommentDialog = ({ openMsg, setOpenMsg }) => {
     
     const sendMessageHandler = async () => {
         try {
-            const res = await axios.post(`http://localhost:5000/api/v2/post/${selectedPost?._id}/comment`, { text }, {
+            const res = await axios.post(`https://instagram-project-ogve.onrender.com/api/v2/post/${selectedPost?._id}/comment`, { text }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

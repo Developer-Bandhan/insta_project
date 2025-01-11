@@ -22,7 +22,7 @@ const LeftSidebar = () => {
 
     const logoutRouter = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/v2/user/logout', { withCredentials: true });
+            const res = await axios.get('https://instagram-project-ogve.onrender.com/api/v2/user/logout', { withCredentials: true });
             if (res.data.success) {
                 dispatch(setAuthUser(null));
                 navigate('/login');

@@ -38,7 +38,7 @@ const Post = ({ post }) => {
     const likeOrDislikeHandler = async () => {
         try {
             const action = liked ? 'dislike' : 'like'; // Determine the action
-            const res = await axios.get(`http://localhost:5000/api/v2/post/${post?._id}/${action}`, { withCredentials: true });
+            const res = await axios.get(`https://instagram-project-ogve.onrender.com/api/v2/post/${post?._id}/${action}`, { withCredentials: true });
             if (res.data.success) {
                 // Update the like count and liked state
                 setPostLike(prev => liked ? prev - 1 : prev + 1);
@@ -66,7 +66,7 @@ const Post = ({ post }) => {
 
     const commentHandler = async () => {
         try {
-            const res = await axios.post(`http://localhost:5000/api/v2/post/${post?._id}/comment`, { text }, {
+            const res = await axios.post(`https://instagram-project-ogve.onrender.com/api/v2/post/${post?._id}/comment`, { text }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -97,7 +97,7 @@ const Post = ({ post }) => {
 
     const deletePostHandler = async () => {
         try {
-            const res = await axios.delete(`http://localhost:5000/api/v2/post/delete/${post?._id}`, { withCredentials: true })
+            const res = await axios.delete(`https://instagram-project-ogve.onrender.com/api/v2/post/delete/${post?._id}`, { withCredentials: true })
             if (res.data.success) {
                 const updatedPostData = posts.filter((postItem) => postItem?._id != post?._id);
                 dispatch(setPosts(updatedPostData));
@@ -112,7 +112,7 @@ const Post = ({ post }) => {
 
     const bookmarkHandler = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/v2/post/${post?._id}/bookmark`, {
+            const res = await axios.get(`https://instagram-project-ogve.onrender.com/api/v2/post/${post?._id}/bookmark`, {
                 withCredentials:true
             });
             if(res.data.success){

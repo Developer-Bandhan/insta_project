@@ -11,7 +11,7 @@ const useGetAllMessage = () => {
     useEffect(() => {
         const fetchAllMessage = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/v2/message/all/${selectedUser?._id}`, {
+                const res = await axios.get(`https://instagram-project-ogve.onrender.com/api/v2/message/all/${selectedUser?._id}`, {
                      withCredentials: true
                 })
                 if(res.data.success) {
